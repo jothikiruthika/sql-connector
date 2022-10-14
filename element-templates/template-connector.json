@@ -35,7 +35,7 @@
     "properties": [
       {
         "type": "Hidden",
-        "value": "io.camunda:template:1",
+        "value": "io.camunda:sql-connector:1",
         "binding": {
           "type": "zeebe:taskDefinition:type"
         }
