@@ -37,7 +37,7 @@ mvn clean package
 ```json
 {
   "result": {
-    "myProperty": "....."
+    "outputValue": "....."
   }
 }
 ```

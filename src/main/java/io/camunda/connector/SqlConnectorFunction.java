@@ -7,28 +7,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @OutboundConnector(
-    name = "MYCONNECTOR",
-    inputVariables = {"myProperty", "authentication"},
-    type = "io.camunda:my-connector:1")
-public class MyConnectorFunction implements OutboundConnectorFunction {
+    name = "SqlConnector",
+    inputVariables = {"message", "authentication"},
+    type = "io.camunda:sql-connector:1")
+public class SqlConnectorFunction implements OutboundConnectorFunction {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(MyConnectorFunction.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SqlConnectorFunction.class);
 
   @Override
   public Object execute(OutboundConnectorContext context) throws Exception {
-    var connectorRequest = context.getVariablesAsType(MyConnectorRequest.class);
+    var connectorRequest = context.getVariablesAsType(SqlConnectorRequest.class);
 
-    context.validate(connectorRequest);
+//    context.validate(connectorRequest);
     context.replaceSecrets(connectorRequest);
 
     return executeConnector(connectorRequest);
   }
 
-  private MyConnectorResult executeConnector(final MyConnectorRequest connectorRequest) {
+  private SqlConnectorResult executeConnector(final SqlConnectorRequest connectorRequest) {
     // TODO: implement connector logic
     LOGGER.info("Executing my connector with request {}", connectorRequest);
-    var result = new MyConnectorResult();
-    result.setMyProperty("Message received: " + connectorRequest.getMessage());
+    var result = new SqlConnectorResult();
+    result.setOutputValue("Message received: " + connectorRequest.getMessage());
     return result;
   }
 }

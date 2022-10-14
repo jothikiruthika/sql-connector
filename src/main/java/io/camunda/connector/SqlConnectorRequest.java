@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
-public class MyConnectorRequest {
+public class SqlConnectorRequest {
 
   @NotEmpty
   private String message;
@@ -43,13 +43,13 @@ public class MyConnectorRequest {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    MyConnectorRequest other = (MyConnectorRequest) obj;
+    SqlConnectorRequest other = (SqlConnectorRequest) obj;
     return Objects.equals(authentication, other.authentication)
         && Objects.equals(message, other.message);
   }
 
   @Override
   public String toString() {
-    return "MyConnectorRequest [message=" + message + ", authentication=" + authentication + "]";
+    return "SqlConnectorRequest [message=" + message + ", authentication=" + authentication + "]";
   }
 }
