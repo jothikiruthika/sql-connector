@@ -2,7 +2,7 @@ package io.camunda.connector;
 
 import java.util.Objects;
 
-public class SqlConnectorResult {
+public class PostgresqlConnectorResult {
 
   // TODO: define connector result properties, which are returned to the process engine
   private String outputValue;
@@ -23,7 +23,7 @@ public class SqlConnectorResult {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    final SqlConnectorResult that = (SqlConnectorResult) o;
+    final PostgresqlConnectorResult that = (PostgresqlConnectorResult) o;
     return Objects.equals(outputValue, that.outputValue);
   }
 
@@ -34,7 +34,7 @@ public class SqlConnectorResult {
 
   @Override
   public String toString() {
-    return "SqlConnectorResult [outputValue=" + outputValue + "]";
+    return "PostgresqlConnectorResult [outputValue=" + outputValue + "]";
   }
 
 }
