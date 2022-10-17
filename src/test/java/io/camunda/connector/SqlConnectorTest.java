@@ -26,7 +26,7 @@ public class SqlConnectorTest {
 //    sqlFilters.setName("requestType");
 //    sqlFilters.setOperations("=");
 //    sqlFilters.setValues("update");
-//    input.setFilter(sqlFilters);
+//    input.setFilter("requestType= 'update'");
 //
 //    var selectors = new SqlSelector();
 //    selectors.setSelectors("requiredImplementation");
@@ -42,5 +42,5 @@ public class SqlConnectorTest {
 //      .isInstanceOf(PostgresqlConnectorResult.class)
 //      .extracting("outputValue")
 //      .isEqualTo("create,none");
- // }
+//  }
 }

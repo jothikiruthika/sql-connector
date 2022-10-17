@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
         type = "io.camunda:postgresql-connector:1")
 public class PostgresqlConnectorFunction implements OutboundConnectorFunction {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(PostgresqlConnectorFunction.class);
+  //private static final Logger LOGGER = LoggerFactory.getLogger(PostgresqlConnectorFunction.class);
 
     @Override
     public Object execute(OutboundConnectorContext context) throws Exception {
@@ -32,7 +32,7 @@ public class PostgresqlConnectorFunction implements OutboundConnectorFunction {
 
     private PostgresqlConnectorResult executeConnector(final PostgresqlConnectorRequest connectorRequest) {
         // TODO: implement connector logic
-       LOGGER.info("Executing my connector with request {}", connectorRequest);
+       //LOGGER.info("Executing my connector with request {}", connectorRequest);
 
         Connection conn = null;
         Statement stmt = null;
@@ -45,9 +45,11 @@ public class PostgresqlConnectorFunction implements OutboundConnectorFunction {
 
             stmt = conn.createStatement();
             sql = "SELECT " + connectorRequest.getSelector() .getSelectors()+ " FROM RequiredImplementations";
-            SqlFilter filter = connectorRequest.getFilter();
+            //SqlFilter filter = connectorRequest.getFilter();
+            String filter = connectorRequest.getFilter();
             if (filter != null)
-                sql += " where " + filter.getName() +" "+ filter.getOperations() + " '" + filter.getValues() + "'";
+               // sql += " where " + filter.getName() +" "+ filter.getOperations() + " '" + filter.getValues() + "'";
+                sql += " where "+ filter;
             System.out.println("sql query -- "+ sql);
             ResultSet rs = stmt.executeQuery(sql);
 
