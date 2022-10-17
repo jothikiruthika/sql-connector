@@ -1,107 +1,166 @@
-[
-  {
-    "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
-    "name": "Template: Some Function",
-    "id": "io.camunda.connector.Template.v1",
-    "description": "Describe this connector",
-    "documentationRef": "https://docs.camunda.io/docs/components/modeler/web-modeler/connectors/available-connectors/template/",
-    "icon": {
-      "contents": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20width%3D%2218%22%20viewBox%3D%220%200%2010%2010%22%20shape-rendering%3D%22geometricPrecision%22%3E%3Ctitle%3ESlack%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M0%2C0%20L0%2C10%20L10%2C10%20L10%2C0%20z%22%20fill%3D%22%23ecb12f%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+{
+  "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+  "name": "Postgresql Connector Template.json",
+  "id": "0fdd1b99-1c0e-4049-a0ec-ef90c4a2419e",
+  "description": "Connector to connect to Postgresql DB instance",
+  "documentationRef": "https://docs.camunda.io/docs/components/modeler/web-modeler/connectors/available-connectors/template/",
+  "icon": {
+    "contents": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20width%3D%2218%22%20viewBox%3D%220%200%2010%2010%22%20shape-rendering%3D%22geometricPrecision%22%3E%3Ctitle%3ESlack%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M0%2C0%20L0%2C10%20L10%2C10%20L10%2C0%20z%22%20fill%3D%22%23ecb12f%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+  },
+  "category": {
+    "id": "connectors",
+    "name": "Connectors"
+  },
+  "appliesTo": [
+    "bpmn:Task"
+  ],
+  "elementType": {
+    "value": "bpmn:ServiceTask"
+  },
+  "groups": [
+    {
+      "id": "connection",
+      "label": "SQL Connection"
     },
-    "category": {
-      "id": "connectors",
-      "name": "Connectors"
+    {
+      "id": "selector",
+      "label": "SQL Selectors"
     },
-    "appliesTo": [
-      "bpmn:Task"
-    ],
-    "elementType": {
-      "value": "bpmn:ServiceTask"
+    {
+      "id": "filter",
+      "label": "SQL Filters"
     },
-    "groups": [
-      {
-        "id": "authentication",
-        "label": "Authentication"
-      },
-      {
-        "id": "compose",
-        "label": "Compose"
-      },
-      {
-        "id": "output",
-        "label": "Output Mapping"
+    {
+      "id": "output",
+      "label": "Output Mapping"
+    }
+  ],
+  "properties": [
+    {
+      "type": "Hidden",
+      "value": "io.camunda:postgresql-connector:1",
+      "binding": {
+        "type": "zeebe:taskDefinition:type"
       }
-    ],
-    "properties": [
-      {
-        "type": "Hidden",
-        "value": "io.camunda:sql-connector:1",
-        "binding": {
-          "type": "zeebe:taskDefinition:type"
-        }
+    },
+    {
+      "label": "DB Server URL",
+      "description": "DB server URL",
+      "group": "connection",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "connection.serverUrl"
       },
-      {
-        "label": "Username",
-        "description": "The username for authentication.",
-        "group": "authentication",
-        "type": "String",
-        "feel": "optional",
-        "binding": {
-          "type": "zeebe:input",
-          "name": "authentication.user"
-        },
-        "constraints": {
-          "notEmpty": true
-        }
-      },
-      {
-        "label": "Token",
-        "description": "The token for authentication.",
-        "group": "authentication",
-        "type": "String",
-        "feel": "optional",
-        "binding": {
-          "type": "zeebe:input",
-          "name": "authentication.token"
-        },
-        "constraints": {
-          "notEmpty": true
-        }
-      },
-      {
-        "label": "Message",
-        "group": "compose",
-        "type": "Text",
-        "feel": "optional",
-        "binding": {
-          "type": "zeebe:input",
-          "name": "message"
-        },
-        "constraints": {
-          "notEmpty": true
-        }
-      },
-      {
-        "label": "Result Variable",
-        "description": "Name of variable to store the response in",
-        "group": "output",
-        "type": "String",
-        "binding": {
-          "type": "zeebe:taskHeader",
-          "key": "resultVariable"
-        }
-      },
-      {
-        "label": "Result Expression",
-        "description": "Expression to map the response into process variables",
-        "group": "output",
-        "type": "Text",
-        "feel": "required",
-        "binding": {
-          "type": "zeebe:taskHeader",
-          "key": "resultExpression"
-        }
+      "constraints": {
+        "notEmpty": true
       }
-    ]
-  }
-]
+    },
+    {
+      "label": "DB Username",
+      "description": "The username for db authentication.",
+      "group": "connection",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "connection.postgresUserName"
+      },
+      "constraints": {
+        "notEmpty": true
+      }
+    },
+    {
+      "label": "DB password",
+      "description": "The password for db authentication.",
+      "group": "connection",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "connection.postgresPassword"
+      },
+      "constraints": {
+        "notEmpty": true
+      }
+    },
+    {
+      "label": "SQL Query Selector",
+      "description": "SQL Query Selector",
+      "group": "selector",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "selector.selectors"
+      },
+      "constraints": {
+        "notEmpty": true
+      }
+    },
+    {
+      "label": "SQL Query Filter Names",
+      "description": "name of the column in the where clause",
+      "group": "filter",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "filter.name"
+      },
+      "constraints": {
+        "notEmpty": true
+      }
+    },
+    {
+      "label": "SQL Query Filter Operations",
+      "description": "operation to be performed in the where clause, eg. like, =, <, >",
+      "group": "filter",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "filter.operations"
+      },
+      "constraints": {
+        "notEmpty": true
+      }
+    },
+    {
+      "label": "SQL Query Filter Values",
+      "description": "value to filter in the where clause",
+      "group": "filter",
+      "type": "String",
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "filter.values"
+      },
+      "constraints": {
+        "notEmpty": true
+      }
+    },
+    {
+      "label": "Result Variable",
+      "description": "Name of variable to store the response in",
+      "group": "output",
+      "type": "String",
+      "binding": {
+        "type": "zeebe:taskHeader",
+        "key": "resultVariable"
+      }
+    },
+    {
+      "label": "Result Expression",
+      "description": "Expression to map the response into process variables",
+      "group": "output",
+      "type": "Text",
+      "feel": "required",
+      "binding": {
+        "type": "zeebe:taskHeader",
+        "key": "resultExpression"
+      }
+    }
+  ]
+}
