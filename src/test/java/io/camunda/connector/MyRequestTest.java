@@ -29,7 +29,7 @@ public class MyRequestTest {
         sqlFilters.setName("requestType");
         sqlFilters.setOperations("=");
         sqlFilters.setValues("update");
-        input.setFilter(sqlFilters);
+        input.setFilter("requestType= 'update'");
 
         var selectors = new SqlSelector();
         selectors.setSelectors("requiredImplementation");

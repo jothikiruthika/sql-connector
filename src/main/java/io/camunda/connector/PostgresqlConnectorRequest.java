@@ -9,11 +9,21 @@ import java.util.Objects;
 
 public class PostgresqlConnectorRequest {
 
-  private SqlFilter filter;
+//  private SqlFilter filter;
   @NotNull
   private SqlSelector selector;
   @NotNull
   private Connection connection;
+
+  public String getFilter() {
+    return filter;
+  }
+
+  public void setFilter(String filter) {
+    this.filter = filter;
+  }
+
+  private String filter;
 
 
   @Override
@@ -37,13 +47,13 @@ public class PostgresqlConnectorRequest {
             ", filters= " + getFilter() + ", selectors= " + getSelector() + "]";
   }
 
-  public void setFilter(SqlFilter filter) {
-    this.filter = filter;
-  }
-
-  public SqlFilter getFilter() {
-    return filter;
-  }
+//  public void setFilter(SqlFilter filter) {
+//    this.filter = filter;
+//  }
+//
+//  public SqlFilter getFilter() {
+//    return filter;
+//  }
 
   public SqlSelector getSelector() {
     return selector;
