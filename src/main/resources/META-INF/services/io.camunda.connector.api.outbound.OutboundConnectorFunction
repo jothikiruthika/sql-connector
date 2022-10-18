@@ -1,1 +1,1 @@
-io.camunda.connector.PostgresqlConnectorFunction
+io.camunda.connector.postgresql.PostgresqlConnectorFunction
