@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
-  "name": "Postgresql Connector Template.json",
+  "name": "Postgresql Connector Template",
   "id": "0fdd1b99-1c0e-4049-a0ec-ef90c4a2419e",
   "description": "Connector to connect to Postgresql DB instance",
   "documentationRef": "https://docs.camunda.io/docs/components/modeler/web-modeler/connectors/available-connectors/template/",
@@ -23,16 +23,8 @@
       "label": "SQL Connection"
     },
     {
-      "id": "selector",
-      "label": "SQL Selectors"
-    },
-    {
-      "id": "filter",
-      "label": "SQL Filters"
-    },
-    {
-      "id": "output",
-      "label": "Output Mapping"
+      "id": "sql",
+      "label": "SQL Query Elements"
     }
   ],
   "properties": [
@@ -88,54 +80,40 @@
     {
       "label": "SQL Query Selector",
       "description": "SQL Query Selector",
-      "group": "selector",
+      "group": "sql",
       "type": "String",
       "feel": "optional",
       "binding": {
         "type": "zeebe:input",
-        "name": "selector.selectors"
+        "name": "selector"
       },
       "constraints": {
         "notEmpty": true
       }
     },
     {
-      "label": "SQL Query Filter Names",
-      "description": "name of the column in the where clause",
-      "group": "filter",
+      "label": "SQL Query Filter",
+      "description": "the where clause",
+      "group": "sql",
       "type": "String",
       "feel": "optional",
       "binding": {
         "type": "zeebe:input",
-        "name": "filter.name"
+        "name": "filter"
       },
       "constraints": {
         "notEmpty": true
       }
     },
     {
-      "label": "SQL Query Filter Operations",
-      "description": "operation to be performed in the where clause, eg. like, =, <, >",
-      "group": "filter",
+      "label": "Table Name",
+      "description": "table name to select from",
+      "group": "sql",
       "type": "String",
       "feel": "optional",
       "binding": {
         "type": "zeebe:input",
-        "name": "filter.operations"
-      },
-      "constraints": {
-        "notEmpty": true
-      }
-    },
-    {
-      "label": "SQL Query Filter Values",
-      "description": "value to filter in the where clause",
-      "group": "filter",
-      "type": "String",
-      "feel": "optional",
-      "binding": {
-        "type": "zeebe:input",
-        "name": "filter.values"
+        "name": "table"
       },
       "constraints": {
         "notEmpty": true

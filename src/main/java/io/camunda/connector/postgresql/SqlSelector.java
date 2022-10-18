@@ -1,8 +1,8 @@
-package io.camunda.connector;
+package io.camunda.connector.postgresql;
 
 import jakarta.validation.constraints.NotEmpty;
 
-public class SqlSelector {
+public class            SqlSelector {
     @NotEmpty
     private String selectors;
 

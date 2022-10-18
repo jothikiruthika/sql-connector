@@ -1,4 +1,4 @@
-package io.camunda.connector;
+package io.camunda.connector.postgresql;
 
 import java.util.Objects;
 
