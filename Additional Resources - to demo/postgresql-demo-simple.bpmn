@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="52ef6d2" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="ac07cd3b-f580-4265-898c-fcb83fa9a385">
+  <bpmn:process id="process_postgresql_connector_demo" name="demo PostgreSql Connector" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_04yebfg</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_04yebfg" sourceRef="StartEvent_1" targetRef="Activity_1bzj3yy" />
+    <bpmn:endEvent id="Event_17k2vut">
+      <bpmn:incoming>Flow_1icpr45</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1icpr45" sourceRef="Activity_1bzj3yy" targetRef="Event_17k2vut" />
+    <bpmn:serviceTask id="Activity_1bzj3yy" name="Test postgres" zeebe:modelerTemplate="0fdd1b99-1c0e-4049-a0ec-ef90c4a2419e" zeebe:modelerTemplateVersion="1666061719797" zeebe:modelerTemplateIcon="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20width%3D%2218%22%20viewBox%3D%220%200%2010%2010%22%20shape-rendering%3D%22geometricPrecision%22%3E%3Ctitle%3ESlack%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M0%2C0%20L0%2C10%20L10%2C10%20L10%2C0%20z%22%20fill%3D%22%23ecb12f%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:postgresql-connector:1" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=&#34;jdbc:postgresql://localhost:5432/db-java-docker&#34;" target="connection.serverUrl" />
+          <zeebe:input source="=&#34;Welcome@12345&#34;" target="connection.postgresPassword" />
+          <zeebe:input source="=&#34;postgres&#34;" target="connection.postgresUserName" />
+          <zeebe:input source="=&#34;requestType = &#39;update&#39;&#34;" target="filter" />
+          <zeebe:input source="=&#34;RequiredImplementations&#34;" target="table" />
+          <zeebe:input source="={&#34;requiredImplementation&#34;:&#34;string&#34;}" target="selector" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultExpression" value="={resultList : split(outputValue,&#34;,&#34;)}" />
+          <zeebe:header key="resultVariable" value="outputValueAsProcessVariable" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_04yebfg</bpmn:incoming>
+      <bpmn:outgoing>Flow_1icpr45</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process_postgresql_connector_demo">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1nmj2j3_di" bpmnElement="Activity_1bzj3yy">
+        <dc:Bounds x="290" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_17k2vut_di" bpmnElement="Event_17k2vut">
+        <dc:Bounds x="532" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_04yebfg_di" bpmnElement="Flow_04yebfg">
+        <di:waypoint x="188" y="118" />
+        <di:waypoint x="290" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1icpr45_di" bpmnElement="Flow_1icpr45">
+        <di:waypoint x="390" y="118" />
+        <di:waypoint x="532" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
