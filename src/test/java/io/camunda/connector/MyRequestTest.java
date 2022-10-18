@@ -1,8 +1,13 @@
 package io.camunda.connector;
 
 import io.camunda.connector.impl.ConnectorInputException;
+import io.camunda.connector.postgresql.Connection;
+import io.camunda.connector.postgresql.PostgresqlConnectorRequest;
 import io.camunda.connector.test.outbound.OutboundConnectorContextBuilder;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,14 +30,10 @@ public class MyRequestTest {
         connection.setPostgresPassword("secrets.PASS");
         input.setConnection(connection);
 
-        var sqlFilters = new SqlFilter();
-        sqlFilters.setName("requestType");
-        sqlFilters.setOperations("=");
-        sqlFilters.setValues("update");
         input.setFilter("requestType= 'update'");
 
-        var selectors = new SqlSelector();
-        selectors.setSelectors("requiredImplementation");
+        Map<String, String> selectors = new HashMap<>();
+        selectors.put("requiredImplementation","string");
         input.setSelector(selectors);
 
         var context = OutboundConnectorContextBuilder.create()

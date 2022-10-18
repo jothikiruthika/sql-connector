@@ -1,4 +1,4 @@
-package io.camunda.connector;
+package io.camunda.connector.postgresql;
 
 import io.camunda.connector.api.annotation.Secret;
 import jakarta.validation.constraints.NotEmpty;
