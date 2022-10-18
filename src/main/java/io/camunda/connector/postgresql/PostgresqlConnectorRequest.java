@@ -1,5 +1,6 @@
 package io.camunda.connector.postgresql;
 
+import io.camunda.connector.api.annotation.Secret;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Map;
@@ -11,6 +12,7 @@ public class PostgresqlConnectorRequest {
     @NotNull
     private Map<String, String> selector;
     @NotNull
+    @Secret
     private Connection connection;
 
     public String getFilter() {
